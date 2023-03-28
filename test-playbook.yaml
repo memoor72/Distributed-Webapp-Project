@@ -13,7 +13,7 @@
      gcp_compute_disk:
          name: 'disk-instance'
          size_gb: 50
-         source_image: 'https://console.cloud.google.com/compute/instancesAdd?imageId=7157337275614620995&imageProjectId=debian-cloud&project=clear-basis-382009'
+         source_image: 'projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts'
          zone: "{{ zone }}"
          project: "{{ gcp_project }}"
          auth_kind: "{{ gcp_cred_kind }}"
