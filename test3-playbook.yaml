@@ -8,6 +8,7 @@
       zone: "us-central1-a"
       region: "us-central1"
 
+  tasks:
    - name: create a instance
      gcp_compute_instance:
          state: present
