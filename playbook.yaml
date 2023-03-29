@@ -24,6 +24,7 @@
        loop_var: instance_name
    - name: create db instance
      include_tasks: create db_server_instance.yaml
+     loop: "{{ db_instances }}"
 
    - name: display results
      debug:
