@@ -4,7 +4,7 @@
   vars:
       gcp_project: clear-basis-382009
       gcp_cred_kind: serviceaccount
-      gcp_cred_file: /tmp/anible-service-account.json
+      gcp_cred_file: /tmp/ansible-service-account.json
       zone: "us-central1-a"
       region: "us-central1"
 
