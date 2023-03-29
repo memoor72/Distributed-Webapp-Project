@@ -1,6 +1,6 @@
 - name: create a disk
   gcp_compute_disk:
-      name: 'disk-{{ instance_name }}'
+      name: 'disk-{{ db_instances }}'
       size_gb: 10
       source_image: "{{ image }}"
       zone: "{{ zone }}"
@@ -13,7 +13,7 @@
 
 - name: create a address
   gcp_compute_address:
-      name: 'address-{{ instance_name }}'
+      name: 'address-{{ db_instances }}'
       region: "{{ region }}"
       project: "{{ gcp_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
@@ -25,7 +25,7 @@
 - name: create instance
   gcp_compute_instance:
       state: present
-      name: "{{ instance_name }}"
+      name: "{{ db_instances }}"
       machine_type: "{{ machine_type }}"
       disks:
         - auto_delete: true
