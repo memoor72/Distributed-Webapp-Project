@@ -1,4 +1,4 @@
-- name: Create an instance
+- name: Deploy a distributed web application
   hosts: localhost
   gather_facts: false
   vars:
@@ -9,7 +9,7 @@
     zone: "us-central1-a"
     region: "us-central1"
     image: 'projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts'
-    web_instance:
+    web_instances:
       - web-server-1
       - web-server-2
     db_instances:
@@ -18,56 +18,10 @@
 
   tasks:
    - name: create web instances
-     loop:
-      - web-server-1
-      - web-server-2
+     include_tasks: create web_server_instances.yaml
+     loop: "{{ web_instances }}"
      loop_control:
-        loop_var: instance_name
-     block:
-   - name: create a disk
-     gcp_compute_disk:
-         name: 'disk-instance'
-         size_gb: 10
-         source_image: "{{ image }}"
-         zone: "{{ zone }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
-         scopes: "{{ scopes }}"
-         state: present
-     register: disk
-   - name: create a address
-     gcp_compute_address:
-         name: 'address-instance'
-         region: "{{ region }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
-         scopes: "{{ scopes }}"
-         state: present
-     register: address
-   - name: create server instances
-     gcp_compute_instance:
-         state: present
-         name: "{{ item }}"
-         machine_type: "{{ machine_type }}"
-         disks:
-           - auto_delete: true
-             boot: true
-             source: "{{ disk }}"
-         network_interfaces:
-             - network: null # use default
-               access_configs:
-                 - name: 'External NAT'
-                   nat_ip: "{{ address }}"
-                   type: 'ONE_TO_ONE_NAT'
-         zone: "{{ zone }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
-         scopes: "{{ scopes }}"
-     loop:
-     register: web_deploy_result
+       loop_var: instance_name
 
    - name: create db instance
      gcp_compute_instance:
