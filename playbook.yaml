@@ -32,8 +32,8 @@
    - name: display results
      debug:
        msg:
-         - web_deploy_result
-         - db_deploy_result
+         - "{{ web_deploy_result }}"
+         - "{{ db_deploy_result }}"
 
    - name: Wait for SSH to come up
      wait_for: host={{ address.address }} port=22 delay=10 timeout=60
