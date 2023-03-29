@@ -1,5 +1,5 @@
 - name: create a disk
-  gcp_compute_disk:
+  google.cloud.gcp_compute_disk:
       name: 'disk-{{ instance_name }}'
       size_gb: 10
       source_image: "{{ image }}"
