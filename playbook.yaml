@@ -39,7 +39,7 @@
    - name: create web instances
      gcp_compute_instance:
          state: present
-         name: "{{ web_instance }}"
+         name: "{{ item }}"
          machine_type: "{{ machine_type }}"
          disks:
            - auto_delete: true
@@ -56,6 +56,9 @@
          auth_kind: "{{ gcp_cred_kind }}"
          service_account_file: "{{ gcp_cred_file }}"
          scopes: "{{ scopes }}"
+     loop:
+       - web-server-1
+       - web-server-2
      register: web_deploy_result
 
    - name: create db instance
