@@ -23,6 +23,12 @@
      loop_control:
        loop_var: instance_name
 
+   - name: create db instances
+     include_tasks: create_db_server_instances.yaml
+     loop: "{{ db_instances }}"
+     loop_control:
+       loop_var: instance_name
+
    - name: display results
      debug:
        msg:
