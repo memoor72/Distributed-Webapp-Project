@@ -1,0 +1,6 @@
+[inventory]
+enable_plugins = gcp_compute
+export GCP_AUTH_KIND='serviceaccount'
+export GCP_SERVICE_ACCOUNT_EMAIL='ansible-service-account@clear-basis-382009.iam.gserviceaccount.com '
+export GCP_SERVICE_ACCOUNT_FILE='/tmp/ansible-service-account.json'
+export GCP_SCOPES='https://www.googleapis.com/auth/compute'

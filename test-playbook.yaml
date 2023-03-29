@@ -2,12 +2,11 @@
   hosts: localhost
   gather_facts: false
   vars:
-      gcp_project: clear-basis-382009
-      gcp_cred_kind: serviceaccount
-      gcp_cred_file: /tmp/anible-service-account.json
-      zone: "us-central1-a"
-      region: "us-central1"
-
+    gcp_project: clear-basis-382009
+    gcp_cred_kind: "{{ lookup('env', 'GCP_AUTH_KIND') }}"
+    gcp_cred_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+    zone: "us-central1-a"
+    region: "us-central1"
   tasks:
    - name: create a disk
      gcp_compute_disk:
