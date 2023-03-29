@@ -43,3 +43,4 @@
       service_account_file: "{{ gcp_cred_file }}"
       scopes: "{{ scopes }}"
   register: web_deploy_result
+
