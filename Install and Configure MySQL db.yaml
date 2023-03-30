@@ -1,0 +1,15 @@
+- name: Install and configure MySQL Database
+  hosts:
+    - db-server
+  vars:
+    ansible_ssh_private_key_file: ~/.ssh/google_compute_engine
+    ansible_user: inetronix
+    db_name: employee_db
+    db_user: db_user
+    db_user_password: Passw0rd
+  roles:
+    - python
+    - mysql_db
+
+
+

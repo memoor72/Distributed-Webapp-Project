@@ -1,0 +1,16 @@
+---
+    - name: Install pip3
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install Python Flask dependencies
+      pip:
+        name: [ 'flask', 'flask-mysql' ]
+        state: present
+
+    - name: Copy web-server code
+      copy: src=app.py dest=/opt/app.py
+
+    - name: start web application
+      shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &

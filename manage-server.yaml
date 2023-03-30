@@ -1,5 +1,5 @@
 ---
-- name: Test servers connectivity
+- name: Test instances Connectivity
   hosts:
     - db-server
     - web-server-1

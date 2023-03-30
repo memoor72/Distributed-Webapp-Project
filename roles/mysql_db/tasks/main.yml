@@ -1,0 +1,27 @@
+---
+    - name: Install MySQL database
+      apt:
+        name: ['mysql-server', 'mysql-client']
+        state: present
+
+    - name: Start Mysql Service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Install PyMySQL
+      apt:
+        name: python3-mysql.connector
+        state: present
+
+    - name: Create Application Database
+      mysql_db: name={{ db_name }} state=present
+
+    - name: Create Application DB User
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_user_password }}"
+        priv: '*.*:ALL'
+        state: present
+        host: '%'
