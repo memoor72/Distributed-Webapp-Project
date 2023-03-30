@@ -22,6 +22,15 @@
       become: yes
 
     - name: Create Application Database
+      ansible.builtin.mysql_db:
+        name: {{ db_name }}
+        state: present
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_user_password }}"
+        login_host: 127.0.0.1
+        login_port: 3306
+
+    - name: Create Application Database
       mysql_db: name={{ db_name }} state=present
 
     - name: Create Application DB User
