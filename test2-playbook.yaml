@@ -55,4 +55,4 @@
   hosts: new_instances
   connection: ssh
   become: True
-  roles:
+
