@@ -1,11 +1,13 @@
+---
 - name: Test servers connectivity
-  host:
+  hosts:
     - db-server
     - web-server-1
     - web-server-2
-  var:
+  vars:
     ansible_ssh_private_key_file: ~/.ssh/google_compute_engine
     ansible_user: inetronix
 
   tasks:
-    ping:
+    - name: Ping all servers
+      ansible.builtin.ping:
