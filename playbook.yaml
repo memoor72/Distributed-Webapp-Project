@@ -3,6 +3,7 @@
   gather_facts: false
   vars:
     gcp_project: clear-basis-382009
+    service_account_email: "ansible-service-account@clear-basis-382009.iam.gserviceaccount.com"
     machine_type: n1-standard-1
     zone: "us-central1-a"
     region: "us-central1"
