@@ -1,3 +1,6 @@
-db-server ansible host=104.198.158.121
-web-server-1 ansible host=34.70.94.201
-web-server-2 ansible host=34.121.61.91
+[db]
+db-server ansible_host=104.198.158.121
+
+[web]
+web-server-1 ansible_host=34.70.94.201
+web-server-2 ansible_host=34.121.61.91
