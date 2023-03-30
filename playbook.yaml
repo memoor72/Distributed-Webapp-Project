@@ -3,8 +3,8 @@
   gather_facts: false
   vars:
     gcp_project: clear-basis-382009
-    gcp_cred_kind: "{{ lookup('env', 'GCP_AUTH_KIND') }}"
-    gcp_cred_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+    gcp_cred_kind: serviceaccount
+    gcp_cred_file: /tmp/ansible-service-account.json
     machine_type: n1-standard-1
     zone: "us-central1-a"
     region: "us-central1"
