@@ -18,7 +18,6 @@
     region: "{{ region }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
-    auth_kind: "serviceaccount"
     service_account_file: "{{ gcp_cred_file }}"
     scopes: "{{ scopes }}"
     state: present
@@ -42,7 +41,6 @@
     zone: "{{ zone }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
-    auth_kind: "serviceaccount"
     service_account_file: "{{ gcp_cred_file }}"
     scopes: "{{ scopes }}"
   register: db_deploy_result
