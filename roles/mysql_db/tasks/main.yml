@@ -15,6 +15,12 @@
         name: python3-mysql.connector
         state: present
 
+    - name: Install PyMySQL
+      ansible.builtin.pip:
+        name: pymysql
+        state: present
+      become: yes
+
     - name: Create Application Database
       mysql_db: name={{ db_name }} state=present
 
