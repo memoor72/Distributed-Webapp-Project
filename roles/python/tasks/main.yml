@@ -1,5 +1,17 @@
 ---
+    - name: Update package cache
+      ansible.builtin.apt:
+        update_cache: yes
+      become: yes
+
+    - name: Enable universe repository
+      ansible.builtin.apt_repository:
+        repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe'
+        state: present
+      become: yes
+
     - name: Install dependencies
       apt:
         name: [ 'python3-setuptools', 'python3-all-dev' , 'build-essential', 'python3-pip' , 'python3-mysql.connector' ]
         state: present
+
