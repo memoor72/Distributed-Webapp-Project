@@ -40,5 +40,3 @@
 
    - name: Add host to groupname
      add_host: hostname={{ address.address }} groupname=new_instances
-
-

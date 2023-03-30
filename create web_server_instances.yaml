@@ -11,7 +11,7 @@
       state: present
   register: disk
 
-- name: create a address
+- name: create an address
   gcp_compute_address:
       name: 'address-{{ instance_name }}'
       region: "{{ region }}"
