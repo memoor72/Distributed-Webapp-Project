@@ -3,8 +3,7 @@
   gather_facts: false
   vars:
     gcp_project: clear-basis-382009
-    gcp_cred_kind: "{{ lookup('env', 'GCP_AUTH_KIND') }}"
-    gcp_cred_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+    gcp_cred_kind: serviceaccount
     machine_type: n1-standard-1
     zone: "us-central1-a"
     region: "us-central1"
@@ -17,7 +16,12 @@
     scopes: 'https://www.googleapis.com/auth/compute'
 
   tasks:
-   - name: create web instances
+    - name: Authenticate with GCP
+      google.cloud.gcp_auth:
+        project: "{{ gcp_project }}"
+        service_account_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+
+    - name: create web instances
      include_tasks: create web_server_instances.yaml
      loop: "{{ web_instances }}"
      loop_control:
