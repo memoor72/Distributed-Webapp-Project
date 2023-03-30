@@ -1,5 +1,5 @@
 ---
     - name: Install dependencies
       apt:
-        name: [ 'python3-setuptools', 'python-all-dev', 'build-essential', 'python-pip', 'python3-mysql.connector' ]
+        name: [ 'python3-setuptools', 'python3-all-dev' , 'build-essential', 'python-pip', 'python3-mysql.connector' ]
         state: present
