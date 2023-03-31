@@ -22,7 +22,13 @@
       become: yes
 
     - name: Create Application Database
-      mysql_db: name={{ db_name }}, login_user={{ db_user }}, login_password={{ db_user_password }}, login_host=104.198.158.121, login_port=3306 state=present
+      mysql_db:
+        name: {{ db_name }}
+        login_user: {{ db_user }}
+        login_password: {{ db_user_password }}
+        login_host: 104.198.158.121
+        login_port: 3306
+        state: present
       delegate_to: 104.198.158.121
 
     - name: Create Application DB User
