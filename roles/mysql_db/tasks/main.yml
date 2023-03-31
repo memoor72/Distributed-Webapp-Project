@@ -23,6 +23,7 @@
 
     - name: Create Application Database
       mysql_db: name={{ db_name }}, login_user={{ db_user }}, login_password={{ db_user_password }}, login_host=0.0.0.0, login_port=3306 state=present
+      delegate_to: db-server
 
     - name: Create Application DB User
       mysql_user:
