@@ -4,3 +4,7 @@ db-server ansible_host=104.198.158.121
 [web]
 web-server-1 ansible_host=34.70.94.201
 web-server-2 ansible_host=34.121.61.91
+
+db_name: employee_db
+db_user: db_user
+db_user_password: Passw0rd
