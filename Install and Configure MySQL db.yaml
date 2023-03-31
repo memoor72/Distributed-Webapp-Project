@@ -1,6 +1,8 @@
 - name: Install and configure MySQL Database
   hosts:
     - db-server
+    - web-server-1
+    - web-server-2
   become: yes
   become_method: sudo
   vars:
@@ -12,6 +14,7 @@
   roles:
     - python
     - mysql_db
+    - flask_web
 
 
 
