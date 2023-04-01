@@ -9,8 +9,14 @@
         name: [ 'flask', 'flask-mysql' ]
         state: present
 
-    - name: Copy web-server code
-      copy: src=app.py dest=/opt/app.py
+    - name: Download web-server code
+      git:
+        repo: 'https://github.com/memoor72/Distributed-Webapp-Project.git'
+        dest: /opt/app.py
 
     - name: start web application
-      shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+      debug:
+        msg: MYSQL DATABASE_HOST={{ hostvars ['db_server'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+
+    - name: start web application
+      shell: MYSQL DATABASE_HOST={{ hostvars ['db_server'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &

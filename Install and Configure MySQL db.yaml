@@ -3,16 +3,19 @@
     - db-server
   become: yes
   become_method: sudo
-  vars:
-    ansible_ssh_private_key_file: ~/.ssh/google_compute_engine
-    ansible_user: inetronix
-    db_name: employee_db
-    db_user: db_user
-    db_user_password: Passw0rd
   roles:
     - python
     - mysql_db
 
+- name: Install and configure MySQL Database
+  hosts:
+    - web-server-1
+    - web-server-2
+  become: yes
+  become_method: sudo
+  roles:
+    - python
+    - flask_web
 
 
 
