@@ -1,22 +1,18 @@
 ---
-    - name: Install pip3
-      apt:
-        name: python3-pip
-        state: present
+- name: Install pip3
+  apt:
+    name: python3-pip
+    state: present
 
-    - name: Install Python Flask dependencies
-      pip:
-        name: [ 'flask', 'flask-mysql' ]
-        state: present
+- name: Install Python Flask dependencies
+  pip:
+    name: [ 'flask', 'flask-mysql' ]
+    state: present
 
-    - name: Download web-server code
-      git:
-        repo: 'https://github.com/memoor72/Distributed-Webapp-Project.git'
-        dest: /opt/app.py
+- name: Download web-server code
+  git:
+    repo: 'https://github.com/memoor72/Distributed-Webapp-Project.git'
+    dest: /opt/app.py
 
-    - name: start web application
-      debug:
-        msg: MYSQL DATABASE_HOST={{ hostvars ['db_server'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
-
-    - name: start web application
-      shell: MYSQL DATABASE_HOST={{ hostvars ['db'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+- name: start web application
+  shell: MYSQL_DATABASE_HOST={{ hostvars['db']['private_ip'] }} FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
