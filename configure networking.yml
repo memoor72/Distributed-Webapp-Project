@@ -28,7 +28,7 @@
     - name: Create Load balancer
       gce_lb:
         name: "my-load-balancer"
-        region: "us-central1-a"
+        region: "us-central1"
         protocol: "TCP"
         port_range: "80-80"
         members:
