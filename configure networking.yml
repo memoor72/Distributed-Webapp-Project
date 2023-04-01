@@ -1,0 +1,12 @@
+- name: Setup networking
+  host: localhost
+  task:
+    name: Allow Http Traffic
+    gce_net:
+      name: default
+      fwname: "Allow Http traffic"
+      allowed: tcp:80
+      project: "{{ gcp_project }}"
+      auth_kind: "{{ gcp_cred_kind }}"
+      service_account_file: "{{ gcp_cred_file }}
+      state: "present"

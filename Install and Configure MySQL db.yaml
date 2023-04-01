@@ -7,7 +7,7 @@
     - python
     - mysql_db
 
-- name: Install and configure MySQL Database
+- name: Install and configure webserver
   hosts:
     - web-server-1
     - web-server-2

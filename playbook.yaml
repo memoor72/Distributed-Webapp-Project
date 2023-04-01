@@ -1,21 +1,6 @@
 - name: Deploy a distributed web application
   hosts: localhost
   gather_facts: false
-  vars:
-    gcp_project: clear-basis-382009
-    gcp_cred_kind: serviceaccount
-    gcp_cred_file: /tmp/ansible-service-account.json
-    machine_type: n1-standard-1
-    zone: "us-central1-a"
-    region: "us-central1"
-    image: 'projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts'
-    web_instances:
-      - web-server-1
-      - web-server-2
-    db_instances:
-      - db-server
-    scopes: 'https://www.googleapis.com/auth/compute'
-
   tasks:
    - name: create web instances
      include_tasks: create web_server_instances.yaml
