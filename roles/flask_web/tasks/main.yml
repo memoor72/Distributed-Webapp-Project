@@ -19,4 +19,4 @@
         msg: MYSQL DATABASE_HOST={{ hostvars ['db_server'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
 
     - name: start web application
-      shell: MYSQL DATABASE_HOST={{ hostvars ['db_server'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+      shell: MYSQL DATABASE_HOST={{ hostvars ['db'] ['private_ip'] }}FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
