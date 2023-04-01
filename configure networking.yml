@@ -25,6 +25,12 @@
         state: present
       delegate_to: localhost
 
+    - name: create web instances
+      include_tasks: create web_server_instances.yaml
+      loop: "{{ web_instances }}"
+      loop_control:
+        loop_var: instance_name
+
     - name: Create Load balancer
       gce_lb:
         name: "my-load-balancer"
