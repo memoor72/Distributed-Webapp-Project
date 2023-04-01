@@ -27,6 +27,7 @@
 
     - name: Create Load balancer
       local_action:
+        module: gce_lb
         name: testlb
         region: us-central1-a
         members: [ "us-central1-a/web-server-1", "us-central1-a/web-server-2" ]
