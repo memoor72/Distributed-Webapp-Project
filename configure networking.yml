@@ -36,7 +36,7 @@
           - "web-server-2"
         project_id: "{{ gcp_project }}"
         service_account_email: "{{ gcp_service_account_email }}"
-        service_account_file: "{{ gcp_cred_file }}"
+        credentials_file: "{{ gcp_cred_file }}"
         state: present
       delegate_to: localhost
 
