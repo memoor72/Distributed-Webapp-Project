@@ -22,7 +22,7 @@
       become: yes
 
     - name: Update Mysql configuration file
-      community.general.ini_file:
+      ini_file:
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
         section: mysqld
         option: bind-address
