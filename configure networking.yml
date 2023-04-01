@@ -26,17 +26,20 @@
       delegate_to: localhost
 
     - name: Create Load balancer
-      local_action:
-        module: gce_lb
-        name: testlb
-        region: us-central1-a
-        members: [ "us-central1-a/web-server-1", "us-central1-a/web-server-2" ]
-        httphealthcheck_name: hc
-        httphealthcheck_port: 80
-        httphealthcheck_path: "/up"
-        project: "{{ gcp_project }}"
-        auth_kind: "{{ gcp_cred_kind }}"
+      gce_lb:
+        name: "my-load-balancer"
+        region: "us-central1-a"
+        protocol: "TCP"
+        port_range: "80-80"
+        members:
+          - "web-server-1"
+          - "web-server-2"
+        project_id: "{{ gcp_project }}"
+        service_account_email: 'ansible-service-account@clear-basis-382009.iam.gserviceaccount.com'
         service_account_file: "{{ gcp_cred_file }}"
+        state: present
+      delegate_to: localhost
+
 
 
 
