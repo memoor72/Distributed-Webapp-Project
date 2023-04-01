@@ -14,7 +14,8 @@
     - name: Allow HTTP traffic
       google.cloud.gcp_compute_firewall:
         name: "allow-http"
-        network: "{{ network_info.resources[0].selfLink }}"
+        network:
+          selfLink: "{{ network_info.resources[0].selfLink }}"
         allowed:
           - IPProtocol: tcp
             ports:
@@ -24,5 +25,6 @@
         service_account_file: "{{ gcp_cred_file }}"
         state: present
       delegate_to: localhost
+
 
 
