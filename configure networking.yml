@@ -1,6 +1,6 @@
 - name: Setup networking
-  host: localhost
-  task:
+  hosts: localhost
+  tasks:
     name: Allow Http Traffic
     gce_net:
       name: default
