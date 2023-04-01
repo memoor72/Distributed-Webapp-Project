@@ -1,8 +1,8 @@
 - name: Setup networking
   hosts: localhost
   tasks:
-    name: Allow Http Traffic
-    gce_net:
+   - name: Allow Http Traffic
+     gce_net:
       name: default
       fwname: "Allow Http traffic"
       allowed: tcp:80
