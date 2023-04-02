@@ -10,6 +10,8 @@
         section: mysqld
         option: bind-address
         value: 0.0.0.0
+      become: yes
+      become_method: sudo
 
     - name: Start Mysql Service
       service:
