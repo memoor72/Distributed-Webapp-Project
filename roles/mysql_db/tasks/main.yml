@@ -55,6 +55,12 @@
       become: yes
       become_method: sudo
 
+    - name: Install python3-mysqldb
+      ansible.builtin.apt:
+        name: python3-mysqldb
+        state: present
+        update_cache: yes
+
     - name: Copy .my.cnf file to the target server
       ansible.builtin.copy:
         src: my.cnf.j2
@@ -65,6 +71,19 @@
       vars:
         mysql_user: root
         mysql_password: Passw0rd
+
+    - name: Ensure MySQL root user can login with password
+      ansible.builtin.mysql_user:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: root
+        host: "{{ item }}"
+        password: Passw0rd
+        priv: "*.*:ALL,GRANT"
+        state: present
+      loop:
+        - 127.0.0.1
+        - ::1
+        - localhost
 
     - name: Grant all privileges to the MySQL user
       mysql_user:
