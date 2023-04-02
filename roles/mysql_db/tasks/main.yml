@@ -88,4 +88,4 @@
         priv: '*.*:ALL'
         state: present
         host: '%'
-      no_log: True
+
