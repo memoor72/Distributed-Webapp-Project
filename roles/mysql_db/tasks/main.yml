@@ -55,6 +55,17 @@
       become: yes
       become_method: sudo
 
+    - name: Copy .my.cnf file to the target server
+      ansible.builtin.copy:
+        src: my.cnf.j2
+        dest: /root/.my.cnf
+        mode: 0600
+        owner: root
+        group: root
+      vars:
+        mysql_user: root
+        mysql_password: Passw0rd
+
     - name: Grant all privileges to the MySQL user
       mysql_user:
         login_user: root
