@@ -44,20 +44,12 @@
         state: present
       delegate_to: localhost
 
-    - name: Print Message
+      register: load_balancer_results
+
+    - name: Print load balancer results
       debug:
         msg:
-          gce_lb:
-            name: "my-load-balancer"
-            region: "us-central1"
-            protocol: "TCP"
-            port_range: "80-80"
-            members: [ "us-central1-a/web-server-1", "us-central1-a/web-server-2" ]
-            project_id: "{{ gcp_project }}"
-            service_account_email: "{{ gcp_service_account_email }}"
-            credentials_file: "{{ gcp_cred_file }}"
-            state: present
-          delegate_to: localhost
+          "{{load_balancer_results}}"
 
 
 
