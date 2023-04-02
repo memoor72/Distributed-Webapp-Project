@@ -35,7 +35,7 @@
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
         section: mysqld
         option: port
-        value: 3306
+        value: '3306'
       become: yes
       become_method: sudo
 
