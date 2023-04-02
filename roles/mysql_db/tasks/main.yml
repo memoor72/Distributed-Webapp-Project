@@ -72,18 +72,6 @@
         mysql_user: root
         mysql_password: Passw0rd
 
-    - name: Grant all privileges to the MySQL user
-      mysql_user:
-        login_user: "{{ login_user }}"
-        login_password: "{{ login_password }}"
-        name: "{{ db_user }}"
-        password: "{{ db_user_password }}"
-        host: '%'
-        priv: "*.*:ALL,GRANT"
-        state: present
-      become: yes
-      become_method: sudo
-
     - name: Create Application Database
       mysql_db:
         name: "{{ db_name }}"
