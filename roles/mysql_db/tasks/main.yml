@@ -48,11 +48,12 @@
       become: yes
       become_method: sudo
 
-    - name: Start Mysql Service
-      service:
+    - name: Restart MySQL service
+      ansible.builtin.systemd:
         name: mysql
-        state: started
-        enabled: yes
+        state: restarted
+      become: yes
+      become_method: sudo
 
     - name: Create Application Database
       mysql_db:
