@@ -74,8 +74,8 @@
 
     - name: Grant all privileges to the MySQL user
       mysql_user:
-        login_user: root
-        login_password: Passw0rd
+        login_user: "{{ login_user }}"
+        login_password: "{{ login_password }}"
         name: "{{ db_user }}"
         password: "{{ db_user_password }}"
         host: '%'
