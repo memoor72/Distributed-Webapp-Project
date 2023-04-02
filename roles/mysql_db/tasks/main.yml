@@ -73,19 +73,27 @@
         mysql_password: Passw0rd
 
     - name: Create Application Database
-      mysql_db:
-        name: "{{ db_name }}"
-        login_user: "{{ db_user }}"
-        login_password: "{{ db_user_password }}"
-        login_host: 104.198.158.121
-        login_port: '3306'
+      community.mysql.mysql_db:
+        name: employee_db
         state: present
+        login_user: "{{ login_user }}"
+        login_password: "{{ login_password }}"
 
     - name: Create Application DB User
-      mysql_user:
-        name: "{{ db_user }}"
-        password: "{{ db_user_password }}"
-        priv: '*.*:ALL'
-        state: present
+      community.mysql.mysql_user:
+        name: db_user
         host: '%'
+        password: db_user_password
+        state: present
+        login_user: "{{ login_user }}"
+        login_password: "{{ login_password }}"
+
+    - name: Grant all privileges on employee_db to db_user
+      community.mysql.mysql_user:
+        name: db_user
+        host: '%'
+        priv: "employee_db.*:ALL"
+        state: present
+        login_user: "{{ login_user }}"
+        login_password: "{{ login_password }}"
 
