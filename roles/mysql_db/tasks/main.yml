@@ -4,6 +4,13 @@
         name: ['mysql-server', 'mysql-client-core-8.0', 'mysql-client']
         state: present
 
+    - name: Update Mysql configuration file
+      ini_file:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        section: mysqld
+        option: bind-address
+        value: 0.0.0.0
+
     - name: Start Mysql Service
       service:
         name: mysql
@@ -21,19 +28,6 @@
         state: present
       become: yes
 
-    - name: Update Mysql configuration file
-      ini_file:
-        path: /etc/mysql/mysql.conf.d/mysqld.cnf
-        section: mysqld
-        option: bind-address
-        value: 0.0.0.0
-
-    - name: Start Mysql Service
-      service:
-        name: mysql
-        state: started
-        enabled: yes
-
     - name: Create Application Database
       mysql_db:
         name: "{{ db_name }}"
@@ -42,8 +36,6 @@
         login_host: 104.198.158.121
         login_port: 3306
         state: present
-
-
 
     - name: Create Application DB User
       mysql_user:
