@@ -74,7 +74,7 @@
         login_user: "{{ db_user }}"
         login_password: "{{ db_user_password }}"
         login_host: 104.198.158.121
-        login_port: 3306
+        login_port: '3306'
         state: present
 
     - name: Create Application DB User
