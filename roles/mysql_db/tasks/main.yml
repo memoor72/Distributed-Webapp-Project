@@ -21,11 +21,29 @@
         state: present
       become: yes
 
-    - name: Update Mysql configuration file
+    - name: Update MySQL configuration file with bind-address
       ini_file:
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
         section: mysqld
         option: bind-address
+        value: 0.0.0.0
+      become: yes
+      become_method: sudo
+
+    - name: Update MySQL configuration file with port
+      ini_file:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        section: mysqld
+        option: port
+        value: 3306
+      become: yes
+      become_method: sudo
+
+    - name: Update MySQL configuration file with mysqlx-bind-address
+      ini_file:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        section: mysqld
+        option: mysqlx-bind-address
         value: 0.0.0.0
       become: yes
       become_method: sudo
