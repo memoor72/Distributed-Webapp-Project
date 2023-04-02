@@ -55,16 +55,6 @@
       become: yes
       become_method: sudo
 
-    - name: Create test database
-      mysql_db:
-        login_user: root
-        login_password: Passw0rd
-        name: test_db
-        state: present
-      become: yes
-      become_method: sudo
-
-
     - name: Grant all privileges to the MySQL user
       mysql_user:
         login_user: root
