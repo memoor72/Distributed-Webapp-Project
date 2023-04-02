@@ -4,15 +4,6 @@
         name: ['mysql-server', 'mysql-client-core-8.0', 'mysql-client']
         state: present
 
-    - name: Update Mysql configuration file
-      ini_file:
-        path: /etc/mysql/mysql.conf.d/mysqld.cnf
-        section: mysqld
-        option: bind-address
-        value: 0.0.0.0
-      become: yes
-      become_method: sudo
-
     - name: Start Mysql Service
       service:
         name: mysql
@@ -29,6 +20,21 @@
         name: pymysql
         state: present
       become: yes
+
+    - name: Update Mysql configuration file
+      ini_file:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        section: mysqld
+        option: bind-address
+        value: 0.0.0.0
+      become: yes
+      become_method: sudo
+
+    - name: Start Mysql Service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
 
     - name: Create Application Database
       mysql_db:
