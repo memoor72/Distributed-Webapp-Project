@@ -72,18 +72,14 @@
         mysql_user: root
         mysql_password: Passw0rd
 
-    - name: Ensure MySQL root user can login with password
-      ansible.builtin.mysql_user:
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-        name: root
-        host: "{{ item }}"
-        password: Passw0rd
-        priv: "*.*:ALL,GRANT"
-        state: present
-      loop:
-        - 127.0.0.1
-        - ::1
-        - localhost
+    - name: Change root user authentication method to use password
+      ansible.builtin.shell: |
+        mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '{{ Passw0rd }}';"
+        mysql -u root -e "FLUSH PRIVILEGES;"
+      args:
+        executable: /bin/bash
+      ignore_errors: true
+
 
     - name: Grant all privileges to the MySQL user
       mysql_user:
