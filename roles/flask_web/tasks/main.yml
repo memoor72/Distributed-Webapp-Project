@@ -15,4 +15,4 @@
     dest: /opt/app.py
 
 - name: start web application
-  shell: MYSQL_DATABASE_HOST={{ hostvars['db-server']['private_ip'] }} FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+  shell: MYSQL_DATABASE_HOST={{ db_server_ip }} FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &

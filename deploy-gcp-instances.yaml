@@ -1,0 +1,50 @@
+- name: Deploy a distributed web application
+  hosts: localhost
+  gather_facts: false
+  tasks:
+   - name: create web instances
+     include_tasks: create web_server_instances.yaml
+     loop: "{{ web_instances }}"
+     loop_control:
+       loop_var: instance_name
+
+   - name: create db instances
+     include_tasks: create db_server_instance.yaml
+     loop: "{{ db_instances }}"
+     loop_control:
+       loop_var: instance_name
+
+   - name: display results
+     debug:
+       msg:
+         - "{{ web_deploy_result }}"
+         - "{{ db_deploy_result }}"
+
+   - name: Add web-servers to dynamic in-memory inventory
+     ansible.builtin.add_host:
+       hostname: '{{ item.public_ip }}'
+       private_ip: '{{ item.private_ip }}'
+       db_server_ip: '{{ db_deploy_result.networkInterfaces[0].private_ip }}'
+       groups: web_servers
+     with_items: '{{ web_deploy_result.networkInterfaces}}'
+
+   - name: Add db-servers to dynamic in-memory inventory
+     ansible.builtin.add_host:
+       hostname: '{{ item.public_ip }}'
+       private_ip: '{{ item.private_ip }}'
+       groups: db_servers
+     with_items: '{{ db_deploy_result.networkInterfaces}}'
+
+   - name: Wait for SSH to come up
+     wait_for:
+       host: '{{ item }}'
+       port: 22
+       delay: 10
+       timeout: 60
+     with_items: '{{ groups["web_servers"] + groups["db_servers"] }}'
+
+   - name: Add hosts to new_instances group
+     add_host:
+       hostname: '{{ item }}'
+       groupname: new_instances
+     with_items: '{{ groups["web_servers"] + groups["db_servers"] }}'
