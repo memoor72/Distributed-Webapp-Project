@@ -9,7 +9,7 @@ gcp_project: clear-basis-382009
 gcp_cred_kind: serviceaccount
 gcp_cred_file: /tmp/ansible-service-account.json
 gcp_service_account_email: ansible-service-account@clear-basis-382009.iam.gserviceaccount.com
-g_password: anlnvejqusrelnat
+g_password: miysymphperitszh
 machine_type: n1-standard-1
 zone: "us-central1-a"
 region: "us-central1"
