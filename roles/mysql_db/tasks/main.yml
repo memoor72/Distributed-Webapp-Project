@@ -58,7 +58,7 @@
     - name: Disable auth_socket plugin for root user
       shell: |
           mysql -u root -e "
-          ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY "{{ login_password }}";
+          ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Passw0rd';
           FLUSH PRIVILEGES;"
       ignore_errors: yes
       changed_when: false
