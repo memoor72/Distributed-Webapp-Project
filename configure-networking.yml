@@ -51,8 +51,16 @@
         msg:
           "{{load_balancer_results}}"
 
-
-
+    - name: Sending an e-mail using Gmail SMTP servers
+      community.general.mail:
+        host: smtp.gmail.com
+        port: 587
+        username: username@gmail.com
+        password: "{{ g_password }}"
+        to: Ikay Ihemelandu <memoor2@gmail.com>
+        subject: Ansible job completed sucessfully
+        body: Web application deployed successfully you can acesss it on the URL http://{{ load_balancer_results.external_ip }}"
+      delegate_to: localhost
 
 
 
