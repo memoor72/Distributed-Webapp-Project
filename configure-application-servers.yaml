@@ -1,6 +1,6 @@
 - name: Install and configure MySQL Database
   hosts:
-    - db-servers
+    - db_servers
   become: yes
   become_method: sudo
   roles:
