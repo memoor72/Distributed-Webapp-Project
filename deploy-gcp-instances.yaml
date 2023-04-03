@@ -33,7 +33,8 @@
        hostname: "{{ item.networkInterfaces[0].accessConfigs[0].natIP }}"
        private_ip: "{{ item.networkInterfaces[0].networkIP }}"
        groups: db_servers
-     loop: "{{ db_deploy_result }}"
+     loop:
+       - "{{ db_deploy_result }}"
 
    - name: Wait for SSH to come up
      wait_for:
