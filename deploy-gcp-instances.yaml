@@ -1,6 +1,8 @@
 - name: Deploy a distributed web application
   hosts: localhost
   gather_facts: false
+  vars_files:
+    - vars.yaml
   tasks:
    - name: create web instances
      include_tasks: create web_server_instances.yaml
