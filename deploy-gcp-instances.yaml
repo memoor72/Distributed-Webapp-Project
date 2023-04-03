@@ -22,9 +22,9 @@
 
    - name: Add web-servers to dynamic in-memory inventory
      ansible.builtin.add_host:
-       hostname: '{{ item.public_ip }}'
-       private_ip: '{{ item.private_ip }}'
-       db_server_ip: '{{ db_deploy_result.networkInterfaces[0].private_ip }}'
+       hostname: '{{ item.accessConfigs[0].natIP }}'
+       private_ip: '{{ item.networkIP }}'
+       db_server_ip: '{{ db_deploy_result.networkInterfaces[0].networkIP }}'
        groups: web_servers
      with_items: '{{ web_deploy_result.networkInterfaces}}'
 
