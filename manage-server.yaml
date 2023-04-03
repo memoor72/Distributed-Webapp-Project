@@ -11,3 +11,7 @@
   tasks:
     - name: Ping all servers
       ansible.builtin.ping:
+
+
+
+
