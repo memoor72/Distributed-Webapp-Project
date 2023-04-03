@@ -30,10 +30,10 @@
 
    - name: Add db-servers to dynamic in-memory inventory
      ansible.builtin.add_host:
-       hostname: '{{ item.accessConfigs[0].natIP }}'
-       private_ip: '{{ item.networkIP }}'
+       hostname: "{{ item.networkInterfaces[0].accessConfigs[0].natIP }}"
+       private_ip: "{{ item.networkInterfaces[0].networkIP }}"
        groups: db_servers
-     with_items: '{{ db_deploy_result.networkInterfaces}}'
+     loop: "{{ db_deploy_result }}"
 
    - name: Wait for SSH to come up
      wait_for:
