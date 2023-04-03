@@ -41,7 +41,7 @@
        port: 22
        delay: 10
        timeout: 60
-     with_items: "{{ groups['web_servers'] + groups['db_servers'] }}"
+     with_items: "{{ groups['web_servers'] | combine(groups['db_servers']) }}"
 
    - name: Add hosts to new_instances group
      add_host:
