@@ -36,15 +36,7 @@
      with_items: '{{ db_deploy_result.networkInterfaces}}
 
    - name: Wait for SSH to come up
-     wait_for:
-       host: "{{ item }}"
-       port: 22
-       delay: 10
-       timeout: 60
-     with_items: '{{ groups["web_servers"] + groups["db_servers"] }}'
+     wait_for: host={{ address.address }} port=22 delay=10 timeout=60
 
-   - name: Add hosts to new_instances group
-     add_host:
-       hostname: '{{ item }}'
-       groupname: new_instances
-     with_items: '{{ groups["web_servers"] + groups["db_servers"] }}'
+   - name: Add host to groupname
+     add_host: hostname={{ address.address }} groupname=new_instances
