@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: false
   vars_files:
-    - vars.yaml
+    - all.yaml
   tasks:
    - name: create web instances
      include_tasks: create web_server_instances.yaml
