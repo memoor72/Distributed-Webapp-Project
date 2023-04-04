@@ -1,4 +1,7 @@
 ---
+    - name: Include sensitive variables
+      include_vars:
+        file: secrets.yml
     - name: Install MySQL database
       apt:
         name: ['mysql-server', 'mysql-client-core-8.0', 'mysql-client']
