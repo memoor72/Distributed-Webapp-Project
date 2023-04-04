@@ -54,7 +54,7 @@
     - name: Sending an e-mail using Gmail SMTP servers
       community.general.mail:
         host: smtp.gmail.com
-        port: 587
+        port: 465
         username: username@gmail.com
         password: "{{ g_password }}"
         to: Ikay Ihemelandu <memoor2@gmail.com>
