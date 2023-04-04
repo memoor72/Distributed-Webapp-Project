@@ -55,7 +55,7 @@
       community.general.mail:
         host: smtp.gmail.com
         port: 465
-        username: username@gmail.com
+        username: memoor2@gmail.com
         password: "{{ g_password }}"
         to: Ikay Ihemelandu <memoor2@gmail.com>
         subject: Ansible job completed sucessfully
