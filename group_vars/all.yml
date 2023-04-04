@@ -2,14 +2,11 @@ ansible_ssh_private_key_file: ~/.ssh/google_compute_engine
 ansible_user: inetronix
 db_name: employee_db
 db_user: db_user
-db_user_password: Passw0rd
 login_user: root
-login_password: Passw0rd
 gcp_project: clear-basis-382009
 gcp_cred_kind: serviceaccount
 gcp_cred_file: /tmp/ansible-service-account.json
 gcp_service_account_email: ansible-service-account@clear-basis-382009.iam.gserviceaccount.com
-g_password: agegtoydxwixjnuj
 machine_type: n1-standard-1
 zone: "us-central1-a"
 region: "us-central1"
