@@ -1,3 +1,10 @@
+- name: Setup sensitive variables
+  hosts: localhost
+  tasks:
+    - name: Include sensitive variables
+      include_vars:
+        file: secrets.yml
+
 - name: Import deploy-gcp-instances playbook
   import_playbook: deploy-gcp-instances.yaml
 
