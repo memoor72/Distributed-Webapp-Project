@@ -3,6 +3,11 @@
     - db_servers
   become: yes
   become_method: sudo
+  tasks:
+    - name: Include sensitive variables
+      include_vars:
+        file: secrets.yml
+      no_log: true
   roles:
     - python
     - mysql_db
@@ -12,6 +17,11 @@
     - web_servers
   become: yes
   become_method: sudo
+  tasks:
+    - name: Include sensitive variables
+      include_vars:
+        file: secrets.yml
+      no_log: true
   roles:
     - python
     - flask_web
